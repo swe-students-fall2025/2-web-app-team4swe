@@ -14,6 +14,22 @@ As a casual user, I want to sort missions by creation date or priority so that I
 As a data-driven user, I want to view my task completion statistics (e.g., success rate, time spent) so that I can track my productivity progress.
 As a remote worker, I want to attach useful links or notes to each mission so that I can keep reference materials together with my tasks.
 
+##Leo Fu
+
+As a user, I want to create new tasks with titles and descriptions so that I can keep track of what I need to do.
+
+As a user, I want to edit existing tasks so that I can update details when something changes.
+
+As a user, I want to delete completed or unnecessary tasks so that my to-do list stays clean.
+
+As a user, I want to tag my tasks with keywords so that I can group related items together.
+
+As a user, I want to search tasks by tag or keyword so that I can quickly find specific tasks.
+
+As a user, I want to mark tasks as completed so that I can easily see what I have finished.
+
+As a user, I want my to-do list to be simple and mobile-friendly so that I can check it on my phone anytime.
+
 ## Steps necessary to run the software
 
 See instructions. Delete this line and place instructions to download, configure, and run the software here.
