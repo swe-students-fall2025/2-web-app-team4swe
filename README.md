@@ -34,13 +34,13 @@ As a user, I want to mark tasks as completed so that I can easily see what I hav
 
 As a user, I want my to-do list to be simple and mobile-friendly so that I can check it on my phone anytime.
 
-As an instructor, I want to upload my notes for my class, so that students can have a reference for their own studying.
+As an instructor, I want to upload my notes for my class, so that I won't forget my teaching progress.
 
-As a student, I want to edit and delete my existing notes, so that I can keep my notes accurate and remove outdated information.
+As a student, I want to edit and delete my existing tasks, so that I can figure out what I need to do and remove outdated information.
 
-As a student, I want to organize my notes by subject or course, so that I can easily find all materials related to a specific class.
+As a student, I want to organize my tasks by course, so that I can easily track assignments and deadlines for each class.
 
-As a tutor, I want to review students’ submitted notes, so that I can evaluate their understanding and engagement with the material.
+As a tutor, I want to categorize my tasks by the classes I teach, so that I can efficiently plan lessons, track grading deadlines, and manage my workload.
 
 As a working professional, I want to create and save meeting notes, so that I can keep a clear record of what was discussed and decided in each meeting.
 
