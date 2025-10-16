@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">Trash</h2>
+
+{% if items|length == 0 %}
+  <div class="empty">Trash Bin is empty</div>
+{% else %}
+  <ul class="list">
+    {% for t in items %}
+      <li class="row row-card">
+        <div class="title-strong">{{ t.title }}</div>
+        <div class="row-actions">
+          <form method="post" action="{{ url_for('tasks_restore', task_id=t._id) }}">
+            <button class="btn secondary" type="submit">restore</button>
+          </form>
+          <form method="post" action="{{ url_for('tasks_delete_permanent', task_id=t._id) }}">
+            <button class="btn danger" type="submit">delete permanently</button>
+          </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
