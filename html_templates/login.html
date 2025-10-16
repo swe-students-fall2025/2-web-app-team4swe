@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">{{ 'Register' if mode=='register' else 'Sign In' }}</h2>
+
+<form class="form" method="post">
+  {% if mode == 'register' %}
+    <label>Name</label>
+    <input name="name" required>
+  {% endif %}
+  <label>Email</label>
+  <input name="email" type="email" required>
+  <label>Password</label>
+  <input name="password" type="password" required>
+
+  <div class="actions">
+    <button class="btn primary" type="submit">{{ 'Create account' if mode=='register' else 'Sign in' }}</button>
+    {% if mode == 'register' %}
+      <a class="btn ghost" href="{{ url_for('login') }}">Already have an account? Sign in</a>
+    {% else %}
+      <a class="btn ghost" href="{{ url_for('register') }}">Create an account</a>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">{{ 'Add a Task' if mode=='new' else 'Edit a Task' }}</h2>
+
+<form class="form" method="post" action="{{ action }}">
+  <label>Title</label>
+  <input name="title" required value="{{ task.title if task else '' }}">
+
+  <label>Description</label>
+  <textarea name="description">{{ task.description if task else '' }}</textarea>
+
+  <label>Due Date</label>
+  <input type="date" name="due_date" value="{{ task.due_date if task else '' }}">
+
+  <label>Tag</label>
+
+  <input id="tagInput" name="tag" list="tagOptions" value="{{ task.tag if task else '' }}" placeholder="Type or choose a tag">
+  <datalist id="tagOptions">
+    {% for tg in existing_tags %}
+      <option value="{{ tg }}"></option>
+    {% endfor %}
+  </datalist>
+
+  {% if existing_tags %}
+  <div class="tag-cloud">
+    {% for tg in existing_tags %}
+      <button class="chip" type="button" onclick="document.getElementById('tagInput').value='{{ tg }}'">{{ tg }}</button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="actions">
+    <button class="btn primary" type="submit">{{ 'add' if mode=='new' else 'save changes' }}</button>
+    <a class="btn ghost" href="{{ url_for('tasks', filter='all') }}">cancel</a>
+  </div>
+</form>
+{% endblock %}

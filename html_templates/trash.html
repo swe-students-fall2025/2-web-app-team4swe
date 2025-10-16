@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">Trash</h2>
+
+{% if items|length == 0 %}
+  <div class="empty">Trash Bin is empty.</div>
+{% else %}
+  <ul class="list">
+    {% for t in items %}
+      <li class="row row-as-card">
+        <div class="row-main">
+          <div class="task-title">{{ t.title }}</div>
+          <div class="meta">
+            <span class="tag">{{ t.tag or 'Untagged' }}</span>
+            <span class="due">Due: {{ t.due_date or '—' }}</span>
+          </div>
+        </div>
+        <div class="row-actions">
+          <form method="post" action="{{ url_for('tasks_restore', task_id=t._id) }}">
+            <button class="btn secondary" type="submit">restore</button>
+          </form>
+          <form method="post" action="{{ url_for('tasks_delete_permanent', task_id=t._id) }}"
+                onsubmit="return confirm('Delete permanently? This cannot be undone.');">
+            <button class="btn danger" type="submit">delete forever</button>
+          </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
