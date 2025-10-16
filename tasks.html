@@ -3,9 +3,9 @@
 <h2 class="title">Task List</h2>
 
 <div class="filters">
-  <a class="pill {% if active=='all' %}active{% endif %}" href="{{ url_for('tasks', filter='all') }}">All tasks</a>
-  <a class="pill {% if active=='upcoming' %}active{% endif %}" href="{{ url_for('tasks', filter='upcoming') }}">Upcoming</a>
-  <a class="pill {% if active=='today' %}active{% endif %}" href="{{ url_for('tasks', filter='today') }}">Due Today</a>
+  <a class="pill {{ 'active' if request.args.get('filter')=='all' }}" href="{{ url_for('tasks', filter='all') }}">All tasks</a>
+  <a class="pill {{ 'active' if request.args.get('filter')=='upcoming' }}" href="{{ url_for('tasks', filter='upcoming') }}">Upcoming</a>
+  <a class="pill {{ 'active' if request.args.get('filter')=='today' }}" href="{{ url_for('tasks', filter='today') }}">Due Today</a>
   <a class="pill" href="{{ url_for('tags') }}">By Tags</a>
 </div>
 
@@ -14,11 +14,18 @@
 {% else %}
   <ul class="list">
     {% for t in tasks %}
-      <li class="row">
-        <a class="task-title" href="{{ url_for('task_detail', task_id=t._id) }}">{{ t.title }}</a>
+      <li class="row row-as-card">
+        <div class="row-main">
+          <a class="task-title" href="{{ url_for('task_detail', task_id=t._id) }}">{{ t.title }}</a>
+          <div class="meta">
+            <span class="tag">{{ t.tag or 'Untagged' }}</span>
+            <span class="due">Due: {{ t.due_date or '—' }}</span>
+          </div>
+        </div>
         <div class="row-actions">
-          <a class="btn secondary" href="{{ url_for('tasks_edit', task_id=t._id) }}">edit</a>
-          <form method="post" action="{{ url_for('tasks_soft_delete', task_id=t._id) }}">
+          <a class="btn ghost" href="{{ url_for('tasks_edit', task_id=t._id) }}">edit</a>
+          <form method="post" action="{{ url_for('tasks_soft_delete', task_id=t._id) }}"
+                onsubmit="return confirm('Are you sure you want to delete this task?');">
             <button class="btn danger" type="submit">delete</button>
           </form>
         </div>
@@ -26,6 +33,4 @@
     {% endfor %}
   </ul>
 {% endif %}
-
-<a class="fab" href="{{ url_for('tasks_new') }}">＋</a>
 {% endblock %}

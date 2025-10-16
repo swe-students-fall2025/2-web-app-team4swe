@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">Overdue</h2>
+
+{% if tasks|length == 0 %}
+  <div class="empty">Great! No overdue tasks.</div>
+{% else %}
+  <ul class="list">
+    {% for t in tasks %}
+      <li class="row row-as-card">
+        <div class="row-main">
+          <div class="task-title">{{ t.title }}</div>
+          <div class="meta">
+            <span class="tag">{{ t.tag or 'Untagged' }}</span>
+            <span class="due">Due: {{ t.due_date }}</span>
+            <span class="over">{{ t.days_overdue }} day{{ 's' if t.days_overdue != 1 else '' }} overdue</span>
+          </div>
+        </div>
+        <div class="row-actions">
+          <a class="btn ghost" href="{{ url_for('tasks_edit', task_id=t._id) }}">edit</a>
+          <form method="post" action="{{ url_for('tasks_soft_delete', task_id=t._id) }}"
+                onsubmit="return confirm('Delete this overdue task?');">
+            <button class="btn danger" type="submit">delete</button>
+          </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

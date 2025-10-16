@@ -1,28 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 <h2 class="title">Task Details</h2>
+<div class="card">
+  <div><strong>Creator:</strong> {{ task.creator }}</div>
+  <div><strong>Title:</strong> {{ task.title }}</div>
+  <div><strong>Description:</strong><br>{{ task.description or '—' }}</div>
+  <div><strong>Due Date:</strong> {{ task.due_date or '—' }}</div>
+  <div><strong>Tag:</strong> {{ task.tag or '—' }}</div>
+</div>
 
-<div class="form stack">
-  <label>Creator</label>
-  <div class="readonly">{{ task.creator or '-' }}</div>
-
-  <label>Title</label>
-  <div class="readonly">{{ task.title }}</div>
-
-  <label>Description</label>
-  <div class="readonly">{{ task.description or '-' }}</div>
-
-  <label>Due Date</label>
-  <div class="readonly">{{ task.due_date or '-' }}</div>
-
-  <label>Tag</label>
-  <div class="readonly">{{ task.tag or '-' }}</div>
-
-  <div class="actions">
-    <a class="btn secondary" href="{{ url_for('tasks_edit', task_id=task._id) }}">edit</a>
-    <form method="post" action="{{ url_for('tasks_soft_delete', task_id=task._id) }}">
-      <button class="btn danger" type="submit">delete</button>
-    </form>
-  </div>
+<div class="actions">
+  <a class="btn" href="{{ url_for('tasks_edit', task_id=task._id) }}">edit</a>
+  <form method="post" action="{{ url_for('tasks_soft_delete', task_id=task._id) }}"
+        onsubmit="return confirm('Are you sure you want to delete this task?');"
+        style="display:inline">
+    <button class="btn danger" type="submit">delete</button>
+  </form>
 </div>
 {% endblock %}

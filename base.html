@@ -9,31 +9,45 @@
 <body>
     <header class="topbar">
         <div class="left-actions">
-          {% if request.endpoint != 'home' %}
-            <a class="icon-btn" href="{{ url_for('home') }}" title="Back"
-               onclick="if (history.length>1){history.back();return false;}">←</a>
+          {% if request.endpoint != 'home' and request.endpoint != 'login' and request.endpoint != 'register' %}
+            <a class="icon-btn" href="{{ url_for('home') }}" onclick="if(history.length>1){history.back();return false;}" title="Back">←</a>
           {% endif %}
-          <a class="icon-btn" href="{{ url_for('tasks_new') }}" title="Add">＋</a>
+          {% if current_user.is_authenticated %}
+            <a class="icon-btn" href="{{ url_for('tasks_new') }}" title="Add">＋</a>
+          {% endif %}
         </div>
       
         <h1 class="appname">{{ app_name or "Efficient Max" }}</h1>
       
-        <a class="icon-btn" href="{{ url_for('search') }}" title="Search">🔎</a>
+        <div class="right-actions">
+          {% if current_user.is_authenticated %}
+            <form method="post" action="{{ url_for('logout') }}" style="display:inline">
+              <button class="icon-btn" title="Sign out">⎋</button>
+            </form>
+          {% else %}
+            <a class="icon-btn" href="{{ url_for('login') }}" title="Sign in">🔒</a>
+          {% endif %}
+        </div>
       </header>
       
+      
 
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="flash">{% for m in messages %}<p>{{ m }}</p>{% endfor %}</div>
-    {% endif %}
-  {% endwith %}
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash">
+            {% for m in messages %}<div class="flash-item">{{ m }}</div>{% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
 
   <main class="page">{% block content %}{% endblock %}</main>
 
   <nav class="bottombar">
-    <a class="nav-btn" href="{{ url_for('tasks', filter='all') }}">☰✔</a>
-    <a class="nav-btn" href="{{ url_for('home') }}">🏠</a>
-    <a class="nav-btn" href="{{ url_for('trash') }}">🗑</a>
+    <a class="nav-btn {{ 'active' if request.endpoint in ['tasks'] else '' }}" href="{{ url_for('tasks', filter='all') }}">☰✔</a>
+    <a class="nav-btn {{ 'active' if request.endpoint == 'home' else '' }}" href="{{ url_for('home') }}">🏠</a>
+    <a class="nav-btn {{ 'active' if request.endpoint == 'trash' else '' }}" href="{{ url_for('trash') }}">🗑</a>
+    <a class="nav-btn {{ 'active' if request.endpoint == 'overdue' else '' }}" href="{{ url_for('overdue') }}">⏰</a>
   </nav>
+  
 </body>
 </html>
