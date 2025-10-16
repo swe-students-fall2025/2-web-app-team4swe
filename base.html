@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Weekly Planner" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="left-actions">
+          {% if request.endpoint != 'home' %}
+            <a class="icon-btn" href="{{ url_for('home') }}" title="Back"
+               onclick="if (history.length>1){history.back();return false;}">←</a>
+          {% endif %}
+          <a class="icon-btn" href="{{ url_for('tasks_new') }}" title="Add">＋</a>
+        </div>
+      
+        <h1 class="appname">{{ app_name or "Efficient Max" }}</h1>
+      
+        <a class="icon-btn" href="{{ url_for('search') }}" title="Search">🔎</a>
+      </header>
+      
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash">{% for m in messages %}<p>{{ m }}</p>{% endfor %}</div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="page">{% block content %}{% endblock %}</main>
+
+  <nav class="bottombar">
+    <a class="nav-btn" href="{{ url_for('tasks', filter='all') }}">☰✔</a>
+    <a class="nav-btn" href="{{ url_for('home') }}">🏠</a>
+    <a class="nav-btn" href="{{ url_for('trash') }}">🗑</a>
+  </nav>
+</body>
+</html>

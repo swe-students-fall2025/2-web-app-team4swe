@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="welcome">
+  <h2>Welcome to {{ app_name or "AppName" }}</h2>
+  <p>An application to manage your tasks.</p>
+</section>
+
+<div class="cards">
+  <a class="card" href="{{ url_for('tasks', filter='all') }}">
+    <div class="card-title">Total Tasks</div>
+    <div class="card-num">{{ stats.total or 0 }}</div>
+  </a>
+  <a class="card" href="{{ url_for('tasks', filter='upcoming') }}">
+    <div class="card-title">Upcoming Tasks</div>
+    <div class="card-num">{{ stats.upcoming or 0 }}</div>
+  </a>
+  <a class="card" href="{{ url_for('tasks', filter='today') }}">
+    <div class="card-title">Due Today</div>
+    <div class="card-num">{{ stats.today or 0 }}</div>
+  </a>
+  <a class="card" href="{{ url_for('tags') }}">
+    <div class="card-title">Tags</div>
+    <div class="card-num">{{ stats.tags or 0 }}</div>
+  </a>
+</div>
+{% endblock %}
