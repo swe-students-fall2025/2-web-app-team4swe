@@ -68,31 +68,76 @@ Make sure you have already installed python, pip, and pipenv.
 - **pip** → check with `pip --version` (usually included with Python)
 - **pipenv** → install with `pip install pipenv`
 
-# 1) Clone the repository
+1) Clone the repository
 Enter the following command in your terminal:
 git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git
 cd 2-web-app-team4swe
 
-# 2) Install all required packages listed in requirements.txt
+2) Install all required packages listed in requirements.txt
 Enter the following command in your terminal:
 pipenv install -r requirements.txt
 
-# 3) Install Mongodb
+3) Install Mongodb
 Enter the following command in your terminal:
 brew tap mongodb/brew
 brew install mongodb-community@7.0
 brew services start mongodb-community@7.0
 
-# 4) Create the .env file
+4) Create the .env file
 Enter the following command in your terminal:
 cp env.example .env
 Then open the created .env file and replace the placeholder values with your own configuration.
 
-# 5) Run the app
+5) Run the app
 Enter the following command in your terminal:
 pipenv run python app.py
 
-# 6) After running the command, you should see a line like: Running on http://127.0.0.1:5000, open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
+6) After running the command, you should see a line like: Running on http://127.0.0.1:5000, open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
+
+If run with Docker:
+1) Before run the software, you need to
+install and run [docker desktop](https://www.docker.com/get-started/)
+create a [dockerhub account](https://app.docker.com/signup?)
+
+
+2) Clone the repository
+Enter the following command in your terminal:
+git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git
+cd 2-web-app-team4swe
+
+
+3) Create the .env file
+Enter the following command in your terminal:
+cp env.example .env
+Then open the created .env file and replace the placeholder values with your own configuration.
+
+
+4) Run the software
+Enter the following command in your terminal:
+docker compose up --build -d
+
+
+5) Open the web app
+Open your browser and go to:
+http://localhost:5000
+
+
+If you see an error message saying that a particular port is already in use, you can assign a different port for the Flask app in your docker-compose.yml file.
+To do so, edit the first number in the ports section, for example:
+services:
+ flask-app:
+   ports:
+     - "10000:5000" 
+This means the app will now run on port 10000 on your computer, then you could visit http://localhost:10000
+If you edit any file in the project, you must stop and restart the containers for the changes to take effect:
+docker compose down
+docker compose up --build -d
+
+
+6) Stop the app
+Enter the following command in your terminal:
+docker compose down
+
 
 ## Task boards
 
