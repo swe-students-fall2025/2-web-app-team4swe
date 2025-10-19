@@ -70,7 +70,7 @@ Make sure you have already installed python, pip, and pipenv.
 
 1) Clone the repository  
 Enter the following command in your terminal:  
-`git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git'`  
+`git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git`  
 `cd 2-web-app-team4swe`
 
 2) Install all required packages listed in requirements.txt  
