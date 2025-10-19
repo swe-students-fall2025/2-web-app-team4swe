@@ -3,16 +3,16 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-# 加载环境变量
+# load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 
-# 从 .env 文件读取 MongoDB 信息
+# read MongoDB information from .env file
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017/")
 DB_NAME = os.getenv("DB_NAME", "todolist_db")
 
-# 连接数据库
+# connect to database
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
 
@@ -20,10 +20,10 @@ db = client[DB_NAME]
 def home():
     return jsonify({"message": "To-Do List MongoDB connected successfully!"})
 
-# 初始化示例数据
+# initialize sample data
 @app.route('/init')
 def init_data():
-    db.tasks.delete_many({})  # 清空旧任务
+    db.tasks.delete_many({})  # clear old tasks
 
     db.tasks.insert_many([
         {
@@ -51,13 +51,13 @@ def init_data():
 
     return jsonify({"message": "Sample To-Do tasks inserted!"})
 
-# 获取所有任务
+# get all tasks
 @app.route('/get_tasks')
 def get_tasks():
     tasks = list(db.tasks.find({}, {"_id": 0}))
     return jsonify(tasks)
 
-# 按标签筛选任务
+# filter tasks by tag
 @app.route('/get_tasks/<tag>')
 def get_tasks_by_tag(tag):
     tasks = list(db.tasks.find({"tag": tag}, {"_id": 0}))
@@ -65,7 +65,7 @@ def get_tasks_by_tag(tag):
         return jsonify({"message": f"No tasks found for tag '{tag}'"})
     return jsonify(tasks)
 
-# 清空任务
+# clear tasks
 @app.route('/clear')
 def clear_tasks():
     db.tasks.delete_many({})
