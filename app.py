@@ -113,11 +113,28 @@ def logout():
     flash("Signed out.")
     return redirect(url_for("login"))
 
-#        Pages
+#  Pages
 @app.route("/", endpoint="home")
 @login_required
 def home():
-    return render_template("home.html", title="Home", stats=calc_stats())
+    user = current_user.id
+    tdy = date.today().isoformat()
+
+    total = tasks_col.count_documents(q_active_by_user())
+    upcoming = tasks_col.count_documents({**q_active_by_user(), "due_date": {"$gt": tdy}})
+    today = tasks_col.count_documents({**q_active_by_user(), "due_date": tdy})
+    tags = len(tasks_col.distinct("tag", q_active_by_user()))
+    overdue = tasks_col.count_documents({**q_active_by_user(), "due_date": {"$lt": tdy}})
+
+    stats = {
+        "total": total,
+        "upcoming": upcoming,
+        "today": today,
+        "tags": tags,
+        "overdue": overdue, 
+    }
+
+    return render_template("home.html", stats=stats)
 
 # tasks list ( priority order )
 @app.route("/tasks", endpoint="tasks")
@@ -272,3 +289,12 @@ def overdue():
 
 if __name__ == "__main__":
     app.run(debug=True, host="127.0.0.1", port=5000)
+
+
+@app.after_request
+def add_no_cache_headers(response):
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, private, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
