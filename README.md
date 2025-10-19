@@ -96,4 +96,5 @@ Enter the following command in your terminal:
 
 ## Task boards
 
-See instructions. Delete this line and place a link to the task boards here.
+Link: https://github.com/swe-students-fall2025/2-web-app-team4swe/projects?query=is%3Aopen
+
