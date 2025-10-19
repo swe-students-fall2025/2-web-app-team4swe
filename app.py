@@ -12,7 +12,7 @@ import os, re
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="html_templates")
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret")
 
 # ----- Mongo -----
