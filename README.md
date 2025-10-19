@@ -68,29 +68,29 @@ Make sure you have already installed python, pip, and pipenv.
 - **pip** → check with `pip --version` (usually included with Python)
 - **pipenv** → install with `pip install pipenv`
 
-1) Clone the repository
-    Enter the following command in your terminal:
-    `git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git'`
-    `cd 2-web-app-team4swe`
+1) Clone the repository  
+Enter the following command in your terminal:  
+`git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git'`  
+`cd 2-web-app-team4swe`
 
-2) Install all required packages listed in requirements.txt
-    Enter the following command in your terminal:
-    `pipenv install -r requirements.txt`
+2) Install all required packages listed in requirements.txt  
+Enter the following command in your terminal:  
+`pipenv install -r requirements.txt`
 
-3) Install Mongodb
-    Enter the following command in your terminal:
-    `brew tap mongodb/brew`
-    `brew install mongodb-community@7.0`
-    `brew services start mongodb-community@7.0`
+3) Install Mongodb  
+Enter the following command in your terminal:  
+`brew tap mongodb/brew`  
+`brew install mongodb-community@7.0`  
+`brew services start mongodb-community@7.0`
 
-4) Create the .env file
-    Enter the following command in your terminal:
-    `cp env.example .env`
-    Then open the created .env file and replace the placeholder values with your own configuration.
+4) Create the .env file  
+Enter the following command in your terminal:  
+`cp env.example .env`  
+Then open the created .env file and replace the placeholder values with your own configuration.
 
-5) Run the app
-    Enter the following command in your terminal:
-    `pipenv run python app.py`
+5) Run the app  
+Enter the following command in your terminal:  
+`pipenv run python app.py`
 
 6) After running the command, you should see a line like: Running on (website link), open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
 
