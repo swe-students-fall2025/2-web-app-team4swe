@@ -34,7 +34,7 @@ As a user, I want to mark tasks as completed so that I can easily see what I hav
 
 As a user, I want my to-do list to be simple and mobile-friendly so that I can check it on my phone anytime.
 
-As an instructor, I want to upload my notes for my class, so that I won't forget my teaching progress.
+As an instructor, I want to upload my tasks for my class, so that I won't forget my teaching progress.
 
 As a student, I want to edit and delete my existing tasks, so that I can figure out what I need to do and remove outdated information.
 
@@ -62,7 +62,37 @@ As a user, I want to carry unfinished tasks from the previous week into the new 
 
 ## Steps necessary to run the software
 
-See instructions. Delete this line and place instructions to download, configure, and run the software here.
+Make sure you have already installed python, pip, and pipenv.
+- **Python 3.10+** → check with `python3 --version`  
+  [Download here](https://www.python.org/downloads/) if not installed.
+- **pip** → check with `pip --version` (usually included with Python)
+- **pipenv** → install with `pip install pipenv`
+
+# 1) Clone the repository
+Enter the following command in your terminal:
+git clone https://github.com/swe-students-fall2025/2-web-app-team4swe.git
+cd 2-web-app-team4swe
+
+# 2) Install all required packages listed in requirements.txt
+Enter the following command in your terminal:
+pipenv install -r requirements.txt
+
+# 3) Install Mongodb
+Enter the following command in your terminal:
+brew tap mongodb/brew
+brew install mongodb-community@7.0
+brew services start mongodb-community@7.0
+
+# 4) Create the .env file
+Enter the following command in your terminal:
+cp env.example .env
+Then open the created .env file and replace the placeholder values with your own configuration.
+
+# 5) Run the app
+Enter the following command in your terminal:
+pipenv run python app.py
+
+# 6) After running the command, you should see a line like: Running on http://127.0.0.1:5000, open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
 
 ## Task boards
 
