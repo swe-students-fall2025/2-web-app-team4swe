@@ -8,6 +8,8 @@ A lightweight and custom mission web for users to save, search and organize thei
 
 ## User stories
 
+Link to issues: https://github.com/swe-students-fall2025/2-web-app-team4swe/issues  
+
 As a student, I want to organize my assignments into categories (e.g., homework, exams, group projects) so that I can manage multiple classes efficiently.
 
 As a team leader, I want to create shared mission lists for my team members so that we can collaborate on tasks together in one place.
@@ -63,7 +65,7 @@ As a user, I want to carry unfinished tasks from the previous week into the new 
 ## Steps necessary to run the software
 
 Make sure you have already installed python, pip, and pipenv.
-- **Python 3.10+** → check with `python3 --version`  
+- **Python** → check with `python3 --version`  
   [Download here](https://www.python.org/downloads/) if not installed.
 - **pip** → check with `pip --version` (usually included with Python)
 - **pipenv** → install with `pip install pipenv`
@@ -86,13 +88,13 @@ Enter the following command in your terminal:
 4) Create the .env file  
 Enter the following command in your terminal:  
 `cp env.example .env`  
-Then open the created .env file and replace the placeholder values with your own configuration.
+Then open the created .env file and edit if needed.
 
 5) Run the app  
 Enter the following command in your terminal:  
 `pipenv run python app.py`
 
-6) After running the command, you should see a line like: Running on (website link), open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
+6) After running the command, you should see a line like: Running on http://127.0.0.1:5000, open the link generated in your browser to use the app. To stop the app, press Ctrl + C in your terminal.
 
 ## Task boards
 
