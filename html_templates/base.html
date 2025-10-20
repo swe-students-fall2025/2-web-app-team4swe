@@ -10,7 +10,7 @@
     <header class="topbar">
         <div class="left-actions">
           {% if request.endpoint != 'home' and request.endpoint != 'login' and request.endpoint != 'register' %}
-            <a class="icon-btn" href="{{ url_for('home') }}" onclick="if(history.length>1){history.back();return false;}" title="Back">←</a>
+            <a class="icon-btn" href="{{ back_url or url_for('home') }}" title="Back">←</a>
           {% endif %}
           {% if current_user.is_authenticated %}
             <a class="icon-btn" href="{{ url_for('tasks_new') }}" title="Add">＋</a>
@@ -49,6 +49,6 @@
     <a class="nav-btn {{ 'active' if request.endpoint == 'trash' else '' }}" href="{{ url_for('trash') }}">🗑</a>
     <a class="nav-btn {{ 'active' if request.endpoint == 'overdue' else '' }}" href="{{ url_for('overdue') }}">⏰</a>
   </nav>
-  
+
 </body>
 </html>

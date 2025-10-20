@@ -185,7 +185,7 @@ def task_detail(task_id):
     if not doc:
         flash("Task not found.")
         return redirect(url_for("tasks", filter="all"))
-    return render_template("task_detail.html", title="Task Details", task=with_str_id(doc))
+    return render_template("task_detail.html", title="Task Details", task=with_str_id(doc), back_url=url_for("tasks", filter="all"))
 
 @app.route("/task/<task_id>/edit", methods=["GET","POST"], endpoint="tasks_edit")
 @login_required
